@@ -3,10 +3,10 @@
 {% block title %} Dash Board {% endblock title %}
 
 {% block content %}
-        <h1> User Dashbaord </h1>
-        <P>  welcome , {{request.user.email}} </P>
+        <h1 class="text-light m-3"> User Dashbaord </h1>
+        <P class="text-light m-3">  welcome , {{request.user.email}} </P>
 
-        <div>
+        <div class="m-3">
                 <a href="{% url "Passwordchange" %}" class="btn btn-outline-danger ms-1">
                 Change Password
                 </a>

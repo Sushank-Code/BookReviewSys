@@ -4,21 +4,23 @@ from django.contrib import messages
 from django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth.decorators import login_required
+
 # Reset Password
 from django.contrib.auth.views import PasswordResetView
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse_lazy
+
 # Email sending
 from django.core.mail import EmailMessage
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
+from django.urls import reverse_lazy
 
 # Create your views here.
  
-def register_view(request):
+def register_view(request): 
 
     if request.user.is_authenticated:
-        return redirect('Registered')
+        return redirect('Dashboard')
     
     if request.method == "POST":
         rf = RegistrationForm(request.POST)
@@ -29,10 +31,6 @@ def register_view(request):
     else:
         rf = RegistrationForm()
     return render(request,'custom_auth/registration.html',{'rform':rf})
-
-@login_required
-def register_view2(request):
-    return render(request,'custom_auth/registration2.html')
 
 def login_view(request):
 
@@ -114,7 +112,3 @@ class CustomPasswordResetView(SuccessMessageMixin,PasswordResetView):
         email.content_subtype = 'html'
         email.send()
         
-    
-
-    
-
